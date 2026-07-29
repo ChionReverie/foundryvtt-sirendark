@@ -16,7 +16,7 @@ jobs:
         id: get_versions
         run: |
           MODULE_VERSION=$(node -p "require('./static/module.json').version")
-          PACKAGE_VERSION=$(node-p "require('./package.json').version")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
           TAG_NAME="v${PACKAGE_VERSION}"
           RELEASE_NAME="Release v${PACKAGE_VERSION}"
           
