@@ -8,8 +8,9 @@
     "verified": "14"
   },
   "url": "https://github.com/ChionReverie/foundryvtt-sirendark",
-  "manifest": "https://github.com/ChionReverie/foundryvtt-sirendark/releases/download/latest/system.json",
-  "download": "https://github.com/ChionReverie/foundryvtt-sirendark/releases/download/latest/sirendark.zip",
+  "manifest": "https://github.com/ChionReverie/foundryvtt-sirendark/releases/latest/download/module.json",
+  "download": "https://github.com/ChionReverie/foundryvtt-sirendark/releases/latest/download/sirendark.zip",
+  
   "authors": [
     {
       "name": "Chion Reverie",

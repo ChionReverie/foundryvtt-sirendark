@@ -46,7 +46,7 @@ jobs:
           allowUpdates: false
           artifacts: './dist/module.json, ./sirendark.zip'
           draft: false
-          prerelease: true
+          prerelease: false
           name: ${{ steps.get_versions.outputs.release_name }}
           tag: ${{ steps.get_versions.outputs.tag_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
