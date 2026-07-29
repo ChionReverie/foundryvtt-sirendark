@@ -12,6 +12,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v7
       
+      - name: Install Dependencies
+        run: npm ci
+      
       - name: Get Versions
         id: get_versions
         run: |
