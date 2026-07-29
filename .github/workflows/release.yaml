@@ -2,44 +2,44 @@ on:
   push:
     branches:
       - release
-  jobs:
-    release:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout Repo
-          uses: actions/checkout@v7
-        
-        - name: Setup Node
-          uses: actions/setup-node@v7
-        
-        - name: Get Versions
-          id: get_versions
-          run: |
-            MODULE_VERSION=$(node -p "require('./static/module.json').version")
-            PACKAGE_VERSION=$(node-p "require('./package.json').version")
-            TAG_NAME="v${PACKAGE_VERSION}"
-            RELEASE_NAME="Release v${PACKAGE_VERSION}"
-            
-            echo "module_version=$MODULE_VERSION" >> "$GITHUB_OUTPUT"
-            echo "package_version=$PACKAGE_VERSION" >> "$GITHUB_OUTPUT"
-            echo "tag_name=$TAG_NAME" >> "$GITHUB_OUTPUT"
-            echo "release_name=$RELEASE_NAME" >> "$GITHUB_OUTPUT"
-            
-            if [ "$MODULE_VERSION" != "$PACKAGE_VERSION" ]; then 
-              echo Versions do not match in module and package jsons!
-              exit 1; 
-            fi
-            
-        - name: Build and Archive
-          run: npm run package
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      
+      - name: Setup Node
+        uses: actions/setup-node@v7
+      
+      - name: Get Versions
+        id: get_versions
+        run: |
+          MODULE_VERSION=$(node -p "require('./static/module.json').version")
+          PACKAGE_VERSION=$(node-p "require('./package.json').version")
+          TAG_NAME="v${PACKAGE_VERSION}"
+          RELEASE_NAME="Release v${PACKAGE_VERSION}"
+          
+          echo "module_version=$MODULE_VERSION" >> "$GITHUB_OUTPUT"
+          echo "package_version=$PACKAGE_VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag_name=$TAG_NAME" >> "$GITHUB_OUTPUT"
+          echo "release_name=$RELEASE_NAME" >> "$GITHUB_OUTPUT"
+          
+          if [ "$MODULE_VERSION" != "$PACKAGE_VERSION" ]; then 
+            echo Versions do not match in module and package jsons!
+            exit 1; 
+          fi
+          
+      - name: Build and Archive
+        run: npm run package
 
-        - name: Create Versioned Release
-          uses: ncipollo/release-action@v1
-          with:
-            allowUpdats: false
-            artifacts: './dist/module.json, ./sirendark.zip'
-            draft: false
-            prerelease: true
-            name: ${{ env.RELEASE_NAME }}
-            tag: ${{ env.TAG_NAME }}
-            token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Versioned Release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdats: false
+          artifacts: './dist/module.json, ./sirendark.zip'
+          draft: false
+          prerelease: true
+          name: ${{ env.RELEASE_NAME }}
+          tag: ${{ env.TAG_NAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
