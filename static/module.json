@@ -9,7 +9,7 @@
   },
   "url": "https://github.com/ChionReverie/foundryvtt-sirendark",
   "manifest": "https://github.com/ChionReverie/foundryvtt-sirendark/releases/latest/download/system.json",
-  "download": "https://github.com/ChionReverie/foundryvtt-sirendark/latest/download/sirendark.zip",
+  "download": "https://github.com/ChionReverie/foundryvtt-sirendark/releases/latest/download/sirendark.zip",
   "authors": [
     {
       "name": "Chion Reverie",
