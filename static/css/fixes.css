@@ -1,0 +1,6 @@
+/* This file is for fixes to shadowdark defaults */
+.shadowdark.sheet.player .portrait, 
+.shadowdark.sheet.npc .portrait {   
+    object-fit: cover;
+    object-position: top;    
+}

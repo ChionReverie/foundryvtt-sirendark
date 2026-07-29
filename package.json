@@ -1,0 +1,37 @@
+{
+  "name": "sirendark",
+  "version": "0.1.0",
+  "description": "Extra Features for Shadowdark in Foundry VTT",
+  "homepage": "https://github.com/ChionReverie/foundryvtt-sirendark#readme",
+  "issues": {
+    "url": "https://github.com/ChionReverie/foundryvtt-sirendark/issues",
+    "email": "chion@chion.me"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChionReverie/foundryvtt-sirendark"
+  },
+  "main": "build.once.mjs",
+  "type": "module",
+  "scripts": {
+    "dev": "node build.once.mjs",
+    "watch": "node build.watch.mjs",
+    "package": "node package.mjs"
+  },
+  "dependencies": {
+    "archiver": "^8.0.0",
+    "esbuild": "^0.28.1",
+    "esbuild-clean-plugin": "^2.0.0",
+    "esbuild-copy-static-files": "^0.1.0",
+    "fs-extra": "^11.4.0",
+    "glob": "^13.0.6"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  },
+  "devDependencies": {
+    "@7h3laughingman/foundry-types": "^14.363.0",
+    "@types/jquery": "^4.0.1"
+  }
+}

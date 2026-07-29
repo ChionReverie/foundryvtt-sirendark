@@ -1,0 +1,34 @@
+<div class="SD-box grid-colspan-2">
+    <div class="header">
+        <label>Saves</label>
+		<span>
+			<a class="item-selector fas fa-pen-to-square edit-button" data-action="toggle-edit-saves" data-tooltip="Toggle Edit Saves"></a>
+		</span>
+    </div>
+    <div class="content grid-3-columns">
+		{{#each saves as |save id|}}
+
+			<div class="ability-score">
+				<a
+					data-action="roll-save-check"
+					data-save="{{id}}"
+				>
+					{{localize (concat "SIRENDARK.save_" id)}}
+				</a>
+				<div>
+					{{#if ../editingSaves}}
+						<input
+							name="{{concat "system.saves." id ".value"}}"
+							type="number"
+							value="{{save.value}}"
+							placeholder="0"
+						>
+					{{else}}
+						<span>{{numberFormat save.value decimals=0 sign=true}}</span>
+					{{/if}}
+				</div>
+			</div>
+
+		{{/each}}
+    </div>
+</div>

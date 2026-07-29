@@ -1,0 +1,12 @@
+{
+    "SIRENDARK": {
+        "save_fort": "Fort",
+        "save_reflex": "Ref",
+        "save_will": "Will",
+        "dialog.saving_throw.title": "Make a Saving Throw",
+        "dialog.saving_throw.fort": "Fortitude Saving Throw",
+        "dialog.saving_throw.reflex": "Reflex Saving Throw",
+        "dialog.saving_throw.will": "Will Saving Throw",
+        "roll.check": "Saving Throw"
+    }
+}
