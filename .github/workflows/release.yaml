@@ -11,6 +11,8 @@ jobs:
       
       - name: Setup Node
         uses: actions/setup-node@v7
+        with:
+          node-version: '24'
       
       - name: Install Dependencies
         run: npm ci
@@ -43,6 +45,6 @@ jobs:
           artifacts: './dist/module.json, ./sirendark.zip'
           draft: false
           prerelease: true
-          name: ${{ env.RELEASE_NAME }}
-          tag: ${{ env.TAG_NAME }}
+          name: ${{ steps.get_versions.outputs.release_name }}
+          tag: ${{ steps.get_versions.outputs.tag_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
