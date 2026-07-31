@@ -4,15 +4,35 @@ import { cleanPlugin } from 'esbuild-clean-plugin'
 import esbuildCopyStaticFiles from 'esbuild-copy-static-files'
 import path from 'path'
 
+const loggingPlugin = {
+    name: 'logging',
+    setup(build) {
+        build.onEnd((result) => {
+            if(result.errors.length) {
+                console.error(`Build Failed with ${result.errors.length}`)
+            }
+            else {
+                console.log("Build finished")
+            }
+        })
+    }
+}
+
 const watchDirsPlugin = {
     name: 'watch-dirs',
     setup(build) {
-        build.onLoad({filter: /.*/, namespace: 'file'}, () => {
+        build.onLoad({filter: /.*/, namespace: 'file'}, async () => {
+
+            const sourceFiles = await glob.glob("src/**/*.ts")
+            const staticFiles = await glob.glob("static/**/*")
+
+            const watchFiles = [
+                ...sourceFiles,
+                ...staticFiles,
+            ]
+            
             return {
-                watchDirs: [
-                    path.resolve(import.meta.dirname, 'static'),
-                    path.resolve(import.meta.dirname, 'src'),
-                ]
+                watchFiles
             }
         })
     }
@@ -34,11 +54,11 @@ export async function buildContext () {
         sourcemap: 'linked',
         plugins: [
             cleanPlugin({}),
-            // This isn't working with watch for some reason
             esbuildCopyStaticFiles({
                 src: './static', 
                 dest: 'dist',
             }),
+            loggingPlugin,
             watchDirsPlugin,
         ],
     }) 
